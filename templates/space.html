@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data analyser</title>
+    <link rel="stylesheet" href = "{{url_for('static', filename='style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <h1>Dataset and cleaner</h1>
+        <form action="/upload" method= "POST" enctype="multipart/form-data">
+            
+            <input type="file" name="file" required>
+            <button type="submit">
+                Analyse
+            </button>
+        </form>
+        {% if table %}
+
+        <h2>Dataset Preview</h2>
+
+             {{ table|safe }}
+
+            <h2>Statistics</h2>
+
+              {{ safe|safe }}
+              <p>
+                Rows Before cleanning:
+                {{rows_before}} 
+              </p>
+
+              <p>
+                Rows After Cleaning:
+                {{rows_after}}
+              </p>
+              {% endif %}
+
+              <a href="/download">
+                <button>Download</button>
+              </a>
+
+    </div>
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+    
+</body>
+</html>
